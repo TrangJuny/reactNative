@@ -3,12 +3,12 @@ import {Dimensions, Platform} from 'react-native';
 import {StackNavigator, createStackNavigator, createBottomTabNavigator, withNavigation} from 'react-navigation';
 import {Icon} from 'react-native-elements';
 
-import Bookcase from './screens/bookcase';
-import Explore from './screens/explore';
-import AddBook from './screens/addBook';
-import Lists from './screens/lists';
-import Profile from './screens/profile';
-import EditBook from './screens/editBook'
+import Bookcase from './screens/Bookcase';
+import Explore from './screens/Explore';
+import AddBook from './screens/AddBook';
+import Lists from './screens//Lists';
+import Profile from './screens/Profile';
+// import EditBook from './screens/'
 
 let screen = Dimensions.get('window');
 
@@ -58,8 +58,8 @@ export const BookcaseStack = createStackNavigator({
             header: null,
         }),
     },
-    EditBook: {
-        screen: EditBook,
+    Lists: {
+        screen: Lists,
         navigationOptions: ({navigation}) => ({
             header: null,
             tabBarVisible: false,
@@ -68,26 +68,24 @@ export const BookcaseStack = createStackNavigator({
     },
 });
 
-export const createRootNavigator = () => {
-    return createStackNavigator(
-        {
-            Tabs: {
-                screen: Tabs,
-                navigationOptions: ({navigation}) => ({
-                    gesturesEnabled: false,
-                })
-            },
-            BookcaseStack: {
-                screen: BookcaseStack,
-                navigationOptions: ({navigation}) => ({
-                    gesturesEnabled: false,
-                })
-            }
-
+export const createRootNavigator = createStackNavigator(
+    {
+        Tabs: {
+            screen: Tabs,
+            navigationOptions: ({navigation}) => ({
+                gesturesEnabled: false,
+            })
         },
-        {
-            headerMode: "none",
-            mode: "modal"
+        BookcaseStack: {
+            screen: BookcaseStack,
+            navigationOptions: ({navigation}) => ({
+                gesturesEnabled: false,
+            })
         }
-    );
-};
+
+    },
+    {
+        headerMode: "none",
+        mode: "modal"
+    }
+);

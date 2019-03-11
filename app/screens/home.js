@@ -7,7 +7,7 @@ import {
   createAppContainer,
   createBottomTabNavigator
  } from 'react-navigation'; // Version can be specified in package.json
-import {Tabs,BookcaseStack,createRootNavigator} from './router'
+
 class LogoTitle extends React.Component {
   render() {
     return (
@@ -195,6 +195,7 @@ const tabStack = createBottomTabNavigator(
       inactiveTintColor: '#ddd',
     },
   }
+
 );
 
 const RootStack = createStackNavigator(
@@ -208,9 +209,10 @@ const RootStack = createStackNavigator(
     mode: 'modal',
     headerMode: 'hello',
   }
+
 );
 
-const AppContainer = createAppContainer(createRootNavigator);
+const AppContainer = createAppContainer(RootStack);
 
 export default class App extends React.Component {
   render() {
