@@ -1,4 +1,4 @@
-456+1 React from 'react';
+import React from 'react';
 import { Button, View, Text,Image } from 'react-native';
 // import Icon from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -64,12 +64,7 @@ class HomeScreen extends React.Component {
             });
           }}
         />
-        <Animated.View                 // Special animatable View
-        style={{
-          ...this.props.style,
-          opacity: fadeAnim,         // Bind opacity to animated value
-        }}
-      ></Animated.View>
+        
       </View>
     );
   }
