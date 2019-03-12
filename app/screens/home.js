@@ -1,8 +1,7 @@
 import React from 'react';
-// import { Ionicons } from '@expo/vector-icons';
+
 import { StyleSheet, View, Text, Image } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-// import { LinearGradient } from 'expo';
+import { Icon } from 'react-native-elements';
 import AppIntroSlider from 'react-native-app-intro-slider';
 
 const styles = StyleSheet.create({
@@ -27,10 +26,42 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     textAlign: 'center',
     marginBottom: 16,
+  },
+  buttonCircle: {
+    width: 40,
+    height: 40,
+    backgroundColor: 'rgba(0, 0, 0, .2)',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
 
 const slides = [
+  {
+    key: 'somethun',
+    // title: 'Title 1',
+    text: 'After react-native link react-native-fluidic-slider, please verify node_modules/react-native-fluidic-slider/ios/ contains Pods folder. If does not exist please execute pod install command on node_modules/react-native-fluidic-slider/ios/, if any error => try pod repo update then pod installAfter react-native link react-native-fluidic-slider, please verify node_modules/react-native-fluidic-slider/ios/ contains Pods folder. If does not exist please execute pod install command on node_modules/react-native-fluidic-slider/ios/, if any error => try pod repo update then pod install',
+    image: require('../assets/nemo_google_450.jpg'),
+    imageStyle: styles.image,
+    backgroundColor: '#59b2ab',
+  },
+  {
+    key: 'somethun-dos',
+    title: 'Title 2',
+    text: 'Other cool stuff',
+    image: require('../assets/nemo_google_450.jpg'),
+    imageStyle: styles.image,
+    backgroundColor: '#febe29',
+  },
+  {
+    key: 'somethun1',
+    title: 'Rocket guy',
+    text: 'After react-native link react-native-fluidic-slider, please verify node_modules/react-native-fluidic-slider/ios/ contains Pods folder. If does not exist please execute pod install command on node_modules/react-native-fluidic-slider/ios/, if any error => try pod repo update then pod install',
+    image: require('../assets/nemo_google_450.jpg'),
+    imageStyle: styles.image,
+    backgroundColor: 'pink',
+  },
     {
       key: 'somethun',
       title: 'Title 1',
@@ -50,38 +81,63 @@ const slides = [
     {
       key: 'somethun1',
       title: 'Rocket guy',
-      text: 'I\'m already out of descriptions\n\nLorem ipsum bla bla bla',
+      text: 'After react-native link react-native-fluidic-slider, please verify node_modules/react-native-fluidic-slider/ios/ contains Pods folder. If does not exist please execute pod install command on node_modules/react-native-fluidic-slider/ios/, if any error => try pod repo update then pod install',
       image: require('../assets/nemo_google_450.jpg'),
       imageStyle: styles.image,
-      backgroundColor: 'red',
+      backgroundColor: 'pink',
     }
   ];
 export default class Home extends React.Component {
-  _renderItem = props => (
-    // <LinearGradient
-    //   style={[styles.mainContent, {
-    //     paddingTop: props.topSpacer,
-    //     paddingBottom: props.bottomSpacer,
-    //     width: props.width,
-    //     height: props.height,
-    //   }]}
-    //   colors={props.colors}
-    //   start={{x: 0, y: .1}} end={{x: .1, y: 1}}
-    // >
-      
-      <View style={{ backgroundColor: '#000', width:'100%' }}>
-        <Text>helloo</Text>
-        <FontAwesome5 style={{ backgroundColor: 'transparent' }} name={props.icon} size={100} color="white" />
-        {/* <Text style={styles.title}>{props.title}</Text> */}
-        {/* <Text style={styles.text}>{props.text}</Text> */}
+  _renderNextButton = () => {
+    return (
+      <View style={styles.buttonCircle}>
+        <Icon
+          name="chevron-right"
+          color="rgba(255, 255, 255, .9)"
+          size={24}
+          style={{ backgroundColor: 'transparent' }}
+        />
       </View>
-    // </LinearGradient>
-  );
+    );
+  }
+  _renderDoneButton = () => {
+    return (
+      <View style={styles.buttonCircle}>
+        <Icon
+          name="check"
+          color="rgba(255, 255, 255, .9)"
+          size={24}
+          style={{ backgroundColor: 'transparent' }}
+        />
+      </View>
+    );
+  }
+  _renderPrevButton = () => {
+    return (
+      <View style={styles.buttonCircle}>
+        <Icon
+          name="chevron-left"
+          color="rgba(255, 255, 255, .9)"
+          size={24}
+          style={{ backgroundColor: 'transparent' }}
+        />
+      </View>
+    );
+  }
+  _onDone=()=>{
+    this.props.navigation.navigate('Tabs')
+  }
 
   render() {
     return (
       <AppIntroSlider
         slides={slides}
+        // showPrevButton={true}
+        onDone={this._onDone}
+        renderDoneButton={this._renderDoneButton}
+        renderNextButton={this._renderNextButton}
+        renderPrevButton={this._renderPrevButton}
+        renderSkipButton={this._renderNextButton}
         // renderItem={this._renderItem}
         // bottomButton
       />

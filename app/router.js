@@ -8,7 +8,7 @@ import Explore from './screens/Explore';
 import AddBook from './screens/AddBook';
 import Lists from './screens//Lists';
 import Profile from './screens/Profile';
-// import EditBook from './screens/';
+import Welcome from './screens/Welcome';
 
 import Home from './screens/home';
 
@@ -72,6 +72,9 @@ export const BookcaseStack = createStackNavigator({
 
 export const createRootNavigator = createStackNavigator(
     {
+        Welcome: {
+            screen: Welcome,
+        },
         Home: {
             screen: Home,
         },
@@ -92,6 +95,6 @@ export const createRootNavigator = createStackNavigator(
     {
         headerMode: "none",
         mode: "modal",
-        initialRouteName: 'Home',
+        initialRouteName: 'Welcome',
     }
 );
