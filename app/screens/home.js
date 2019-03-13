@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
   mainContent: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'center' ,
+    flexDirection: 'row',
   },
   image: {
     width: 320,

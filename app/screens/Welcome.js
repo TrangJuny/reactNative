@@ -20,8 +20,15 @@ const styles = StyleSheet.create({
 
     }
 });
-class Welcome extends React.Component {
+export default class Welcome extends React.Component {
 
+    componentDidMount(){
+        setTimeout(
+            ()=>{
+            this.props.navigation.navigate('Home')
+            },500
+        )
+    }
     render() {
       return (
         <View style={{
@@ -39,4 +46,4 @@ class Welcome extends React.Component {
       );
     }
   }
-export default Animatable.createAnimatableComponent(Welcome);
+// export default Animatable.createAnimatableComponent(Welcome);

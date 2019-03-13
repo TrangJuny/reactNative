@@ -14,7 +14,39 @@ import Home from './screens/home';
 
 let screen = Dimensions.get('window');
 
+const ProfileS = createStackNavigator(
+    {
+        Profile: Profile,  
+    },
+    {
+      initialRouteName: 'Profile',
+      defaultNavigationOptions: {
+        headerStyle: {
+        //   backgroundColor: '#25a0f5',
+        },
+        // headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      },
+    }
+  )
 export const Tabs = createBottomTabNavigator({
+    'Lists': {
+        screen: Lists,
+        navigationOptions: {
+            tabBarLabel: 'Lists',
+            tabBarIcon: ({tintColor}) => <Icon name="list" type="entypo" size={28} color={tintColor}/>
+        },
+    },
+    'My Profile': {
+        screen: ProfileS,
+        navigationOptions: {
+            tabBarLabel: 'Profile',
+            tabBarIcon: ({tintColor}) => <Icon name="ios-person" type="ionicon" size={28} color={tintColor}/>
+        },
+
+    },
     'Bookcase': {
         screen: Bookcase,
         navigationOptions: {
@@ -35,20 +67,6 @@ export const Tabs = createBottomTabNavigator({
             tabBarLabel: 'Add Book',
             tabBarIcon: ({tintColor}) => <Icon name="ios-add-circle-outline" type="ionicon" size={28}
                                                color={tintColor}/>
-        },
-    },
-    'Lists': {
-        screen: Lists,
-        navigationOptions: {
-            tabBarLabel: 'Lists',
-            tabBarIcon: ({tintColor}) => <Icon name="list" type="entypo" size={28} color={tintColor}/>
-        },
-    },
-    'My Profile': {
-        screen: Profile,
-        navigationOptions: {
-            tabBarLabel: 'Profile',
-            tabBarIcon: ({tintColor}) => <Icon name="ios-person" type="ionicon" size={28} color={tintColor}/>
         },
     },
 });
@@ -78,6 +96,10 @@ export const createRootNavigator = createStackNavigator(
         Home: {
             screen: Home,
         },
+        
+        Profile: {
+            screen: Profile,
+        },
         Tabs: {
             screen: Tabs,
             navigationOptions: ({navigation}) => ({
@@ -93,8 +115,8 @@ export const createRootNavigator = createStackNavigator(
 
     },
     {
-        headerMode: "none",
         mode: "modal",
-        initialRouteName: 'Welcome',
+        headerMode: "none",
+        initialRouteName: 'Tabs',
     }
 );
