@@ -44,7 +44,7 @@ export default class Profile extends React.Component {
     return (
       <View style={styles.container}>
         <View style={[styles.containerFlexRow,styles.session, styles.shadow,styles.bgPrimary, styles.user]}>
-            <Image  style={styles.Image} source={require('https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg')} />
+            <Image  style={styles.Image} source={require('../assets/user.png')} />
             <View style={styles.paragraph}>
               <Text style={[styles.textBold ,styles.textWhite]}>
                 Thanh Truong
