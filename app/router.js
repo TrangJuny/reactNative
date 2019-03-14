@@ -32,6 +32,13 @@ const ProfileS = createStackNavigator(
     }
   )
 export const Tabs = createBottomTabNavigator({
+    'Explore': {
+        screen: Explore,
+        navigationOptions: {
+            tabBarLabel: 'Explore',
+            tabBarIcon: ({tintColor}) => <Icon name="ios-map" type="ionicon" size={28} color={tintColor}/>
+        },
+    },
     'Lists': {
         screen: Lists,
         navigationOptions: {
@@ -54,13 +61,6 @@ export const Tabs = createBottomTabNavigator({
             tabBarIcon: ({tintColor}) => <Icon name="open-book" type="entypo" size={28} color={tintColor}/>
         },
     },
-    'Explore': {
-        screen: Explore,
-        navigationOptions: {
-            tabBarLabel: 'Explore',
-            tabBarIcon: ({tintColor}) => <Icon name="ios-map" type="ionicon" size={28} color={tintColor}/>
-        },
-    },
     'Add Book': {
         screen: AddBook,
         navigationOptions: {
@@ -78,8 +78,8 @@ export const BookcaseStack = createStackNavigator({
             header: null,
         }),
     },
-    Lists: {
-        screen: Lists,
+    Explore: {
+        screen: Explore,
         navigationOptions: ({navigation}) => ({
             header: null,
             tabBarVisible: false,

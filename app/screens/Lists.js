@@ -3,34 +3,35 @@ import {
   Text, 
   View, 
   StyleSheet, 
-  Image,
-  Switch,
-  Badge,
-  FlatList
+  ScrollView
  } from 'react-native';
-import { Icon, Divider,Avatar,ListItem, List } from 'react-native-elements';
+ 
+import { Divider,Avatar,ListItem, List,
+  Input,Icon } from 'react-native-elements';
+  import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import {createStackNavigator} from 'react-navigation';
 class ListsComponent extends React.Component {
 
-    static navigationOptions = ({ navigation }) => {
-      const params = navigation.state.params || {};
-    
-      return {
-        headerTitle: 'Notification',      
-        headerRight: (
-          <View>
-            <Icon
-                name= "notifications-none"
-                // color="#25a0f5"
-                size={24}
-                containerStyle={[{ backgroundColor: 'transparent', paddingRight: 20, }]}
-                />          
+  static navigationOptions = ({ navigation }) => {
+    const params = navigation.state.params || {};
+  
+    return {
+      headerTitle: 'Notification',      
+      headerRight: (
+        <View>
+          <Icon
+              name= "notifications-none"
+              color="#fff"
+              size={24}
+              containerStyle={[{ backgroundColor: 'transparent', paddingRight: 20, }]}
+              />          
 
-          </View>
-        ),
-      };
+        </View>
+      ),
     };
+  };
+
     renderRow ({ item }) {
       return (
         <ListItem
@@ -42,32 +43,85 @@ class ListsComponent extends React.Component {
         />
       )
     }
-    
+    _renderRight() {
+      return (
+        
+          <View style={[styles.flexRow,styles.spaceBetween] }>          
+            <Icon
+              name= {'create'}
+              color="#999"
+              size={18}
+              style={{ backgroundColor: '#fff' }}
+            />
+            <Icon
+              name= {'delete'}
+              color="#999"
+              size={18}
+              containerStyle={{ marginLeft: 10,}}
+            />         
+          </View>
+      );
+    }
+
+    _renderSubTitle(icon, text) {
+      return (
+        
+          <View style={[styles.flexRow,{marginTop: 5,}]}>
+           
+            <Icon
+              name= {icon}
+              size={18}
+              iconStyle={styles.link}
+              containerStyle={[{ marginRight: 5},styles.link]}
+            />    
+            <Text style={styles.link}>{text}</Text>     
+          </View>
+      );
+    }
     render() {
       return (
         <View style={styles.container}>
-         {/* <List> */}
-          <FlatList
-            data={list}
-            renderItem={this.renderRow}
-            keyExtractor={item => item.name}
-          />
-        {/* </List> */}
-            <Text>
-                Privacy Policy
-            </Text>
-            {/* <List> */}
+            <View style={{display:'flex',
+              alignItems: 'center',
+             justifyContent:'center', flexDirection:'row',
+              backgroundColor: '#448aff', marginBottom:30, paddingBottom:10,borderBottomRightRadius:50,    borderBottomLeftRadius :50,
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 0 },
+              shadowOpacity: .5,
+              shadowRadius: 10,   }}>
+                  <Input
+                    placeholder='Search'
+                    leftIcon={{ type: 'font-awesome', name: 'search',color:'#448aff', size:16 }}
+                    leftIconContainerStyle={{marginRight:10,}}
+                    inputContainerStyle={{borderBottomWidth:0}} 
+                    containerStyle={{borderRadius:20,borderWidth:1, borderColor:'#ddd', marginVertical:10,
+                    marginRight: 10, width:'80%',backgroundColor: '#fff',}}
+                    />
+                    <FontAwesome
+                      name= 'sort-alpha-asc'
+                      size={24}
+                      color="#fff"
+                    />    
+            </View>
+
+            
+        <ScrollView>
               {
-                list.map((item) => (
+                list.map((item,i) => (
                   <ListItem
-                  roundAvatar
+                  key={item}
+                  leftAvatar={{ source: { uri: item.avatar_url } }}
                   title={item.name}
-                  subtitle={item.subtitle}
-                  avatar={{uri:item.avatar_url}}
+                  subtitle={this._renderSubTitle('payment',item.subtitle)}
+                  rightElement={this._renderRight}
+                  containerStyle={[{borderTopWidth:1,borderTopColor:'#ddd'},
+                  (i === list.length - 1) ? {borderBottomWidth:1,borderBottomColor:'#ddd'} : {},
+                ]}
                 />
                 ))
               }
-            {/* </List> */}
+
+        </ScrollView>
         </View>
       );
     }
@@ -75,89 +129,71 @@ class ListsComponent extends React.Component {
   const list = [
     {
       name: 'Amy Farha',
-      avatar_url: '../assets/logo.jpg',
+      avatar_url: '../assets/user.png',
       subtitle: 'Vice President'
     },
     {
       name: 'Chris Jackson',
-      avatar_url: '../assets/logo.jpg',
+      avatar_url: '../assets/user.png',
+      subtitle: 'Vice Chairman'
+    },
+    {
+      name: 'Chris Jackson',
+      avatar_url: '../assets/user.png',
+      subtitle: 'Vice Chairman'
+    },
+    {
+      name: 'Chris Jackson',
+      avatar_url: '../assets/user.png',
+      subtitle: 'Vice Chairman'
+    },
+    {
+      name: 'Chris Jackson',
+      avatar_url: '../assets/user.png',
+      subtitle: 'Vice Chairman'
+    },
+    {
+      name: 'Chris Jackson',
+      avatar_url: '../assets/user.png',
+      subtitle: 'Vice Chairman'
+    },
+    {
+      name: 'Chris Jackson',
+      avatar_url: '../assets/user.png',
+      subtitle: 'Vice Chairman'
+    },
+    {
+      name: 'Chris Jackson',
+      avatar_url: '../assets/user.png',
+      subtitle: 'Vice Chairman'
+    },
+    {
+      name: 'Chris Jackson',
+      avatar_url: '../assets/user.png',
       subtitle: 'Vice Chairman'
     },
     // ... // more items
   ]
 const styles = StyleSheet.create({
+
+  flexRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
   container:{
     flex:1,
   },
+  link:{color:'#005ecb'},
 
-  shadow: {
-    shadowColor: '#ddd',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.5,
-    shadowRadius: 2,
-    backgroundColor:'white',    
-  },
-  borderLight:{
-    borderColor:'#ddd',
-    borderWidth:1,
-  },
-  session:{
-    paddingVertical: 15,
-    paddingHorizontal: 15,    
-    marginBottom: 20,
-  },  
-  user:{
-    marginBottom: 20,
-  },
   containerFlexRow: {
     flexDirection: 'row',
     alignItems: 'center',
     display:'flex',
     width:'100%',
-
-    // flex:1,
   },
   spaceBetween:{
     justifyContent:"space-between",
   },
-  paragraph: {
-    marginLeft: 15,
-    marginRight: 'auto',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  paddingV5:{
-    paddingVertical: 10 ,
-  },
-  paddingV10:{
-    paddingVertical: 12 ,
-  },
-  textBold:{
-    fontWeight:'600',
-  },
-  title18:{
-    fontSize:18,
-    fontWeight:'600',
-    marginBottom: 15,
-  },
-  textWhite:{
-    color: '#ffff',
-  },
-  bgPrimary:{
-    backgroundColor:'#25a0f5',
-  },
-  des:{
-    fontSize:12,
-    marginTop: 5,
-  },
-  Image: {
-    height: 60,
-    width: 60,
-    resizeMode: 'contain',
-    borderRadius:30,
-    borderColor:'#ffff',
-    borderWidth:2,
-  }
 
 });
 
@@ -168,14 +204,14 @@ const Lists = createStackNavigator(
   {
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: 'white',
+        backgroundColor: '#448aff',
         borderWidth:0
       },
-      // headerTintColor: '#fff',
+      headerTintColor: '#fff',
       headerTitleStyle: {
         fontWeight: 'bold',
       },
     },
   }
-)
+);
 export default Lists;
