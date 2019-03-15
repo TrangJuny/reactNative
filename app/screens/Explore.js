@@ -4,7 +4,8 @@ import {
   View, 
   StyleSheet, 
   ScrollView,
-  Picker
+  Picker,
+  TextInput,
  } from 'react-native';
  
 import { Divider,Avatar,ListItem, List,
@@ -13,6 +14,7 @@ import { Divider,Avatar,ListItem, List,
   import { Dropdown } from 'react-native-material-dropdown';
   import { TextField } from 'react-native-material-textfield';
   import {createStackNavigator} from 'react-navigation';
+  import TextControl from '../component/input'
 class ExploreComponent extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
@@ -51,32 +53,28 @@ class ExploreComponent extends React.Component {
       return (
         <View style={[styles.container, styles.containerAdd]}>
 
-          {/* <Input
-              placeholder='Title'
-              leftIconContainerStyle={{marginRight:10,}}
-              inputContainerStyle={{borderBottomWidth:1, borderColor:'#ddd'}} 
-              containerStyle={{borderRadius:20, borderColor:'#ddd',
-              width:'100%',backgroundColor: '#fff',}}
-              />   */}
-              {/* <TextField
-                label='Title'
-                value={phone}
-                multiline={true}
-                // inputContainerStyle={{minHeight:90}}
-                onChangeText={ (phone) => this.setState({ phone }) }
-              /> */}
-            <TextField
-                label='Pop-up Notification'
-                value={phone}
-                multiline={true}
-                inputContainerStyle={{borderWidth:1, borderColor: '#ddd'}}
-                containerStyle={{borderWidth:1, borderColor: '#ddd'}}
-                onChangeText={ (phone) => this.setState({ phone }) }
-              />
+            <Text>Title</Text>
+            <TextInput
+              style={{minHeight:100,borderRadius:4,borderColor: '#ddd',borderWidth:1 }}
+              onChangeText={(text) => this.setState({text})}
+              value={this.state.text}
+              multiline = {true}
+              numberOfLines = {4}
+            />
+
+             <TextInput
+              style={{minHeight:100,borderRadius:4,borderColor: '#ddd',borderWidth:1 }}
+              onChangeText={(text) => this.setState({text})}
+              value={this.state.text}
+              multiline = {true}
+              numberOfLines = {4}
+            />
+         
             <Dropdown
               label='Type'
               data={data}
             />
+            <TextControl></TextControl>
         </View>
         
       );

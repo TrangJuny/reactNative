@@ -3,7 +3,8 @@ import {
   Text, 
   View, 
   StyleSheet, 
-  ScrollView
+  ScrollView,
+  TouchableHighlight
  } from 'react-native';
  
 import { Divider,Avatar,ListItem, List,
@@ -12,6 +13,10 @@ import { Divider,Avatar,ListItem, List,
 
 import {createStackNavigator} from 'react-navigation';
 class ListsComponent extends React.Component {
+
+  state = {
+    listItems:list
+  };
 
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
@@ -43,7 +48,15 @@ class ListsComponent extends React.Component {
         />
       )
     }
-    _renderRight() {
+
+  _delete(index) {
+    let listD = this.state.listItems;
+    listD.splice(index,1);
+    this.setState({
+      listItems: listD,
+    });
+  }
+    _renderRight(index) {
       return (
         
           <View style={[styles.flexRow,styles.spaceBetween] }>          
@@ -53,12 +66,15 @@ class ListsComponent extends React.Component {
               size={18}
               style={{ backgroundColor: '#fff' }}
             />
-            <Icon
-              name= {'delete'}
-              color="#999"
-              size={18}
-              containerStyle={{ marginLeft: 10,}}
-            />         
+             
+            <TouchableHighlight  onPress={()=>{this._delete(index)}} underlayColor="white">
+                <Icon
+                  name= {'delete'}
+                  color="#999"
+                  size={18}
+                  containerStyle={{ marginLeft: 10,}}
+                />  
+            </TouchableHighlight>     
           </View>
       );
     }
@@ -107,15 +123,15 @@ class ListsComponent extends React.Component {
             
         <ScrollView>
               {
-                list.map((item,i) => (
+                this.state.listItems.map((item,index) => (
                   <ListItem
                   key={item}
                   leftAvatar={{ source: { uri: item.avatar_url } }}
                   title={item.name}
                   subtitle={this._renderSubTitle('payment',item.subtitle)}
-                  rightElement={this._renderRight}
+                  rightElement={this._renderRight(index)}
                   containerStyle={[{borderTopWidth:1,borderTopColor:'#ddd'},
-                  (i === list.length - 1) ? {borderBottomWidth:1,borderBottomColor:'#ddd'} : {},
+                  (index === list.length - 1) ? {borderBottomWidth:1,borderBottomColor:'#ddd'} : {},
                 ]}
                 />
                 ))
@@ -128,12 +144,12 @@ class ListsComponent extends React.Component {
   }
   const list = [
     {
-      name: 'Amy Farha',
+      name: 'Amy Farhad21',
       avatar_url: '../assets/user.png',
       subtitle: 'Vice President'
     },
     {
-      name: 'Chris Jackson',
+      name: 'Chris Jacksoné855',
       avatar_url: '../assets/user.png',
       subtitle: 'Vice Chairman'
     },
